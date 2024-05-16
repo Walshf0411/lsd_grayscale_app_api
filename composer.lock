@@ -1945,12 +1945,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:LetsMakeItEcosystem/lsd_model_package.git",
-                "reference": "12c61321f8e05662f772fe008988dfe22d576f2c"
+                "reference": "456b8eddd25fb5c0ef0262ca6251420d64d0e965"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LetsMakeItEcosystem/lsd_model_package/zipball/12c61321f8e05662f772fe008988dfe22d576f2c",
-                "reference": "12c61321f8e05662f772fe008988dfe22d576f2c",
+                "url": "https://api.github.com/repos/LetsMakeItEcosystem/lsd_model_package/zipball/456b8eddd25fb5c0ef0262ca6251420d64d0e965",
+                "reference": "456b8eddd25fb5c0ef0262ca6251420d64d0e965",
                 "shasum": ""
             },
             "require": {
@@ -1974,7 +1974,7 @@
                 "source": "https://github.com/LetsMakeItEcosystem/lsd_model_package/tree/main",
                 "issues": "https://github.com/LetsMakeItEcosystem/lsd_model_package/issues"
             },
-            "time": "2024-05-16T07:48:31+00:00"
+            "time": "2024-05-16T11:41:54+00:00"
         },
         {
             "name": "monolog/monolog",
