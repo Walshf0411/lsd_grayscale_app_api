@@ -9,6 +9,8 @@ class ScreenConfig extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["screen_name"];
+
     public function sections() {
         return $this->hasMany(ScreenSection::class);
     }

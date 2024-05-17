@@ -22,7 +22,11 @@ class CreateScreenConfigsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "screen_name" => ["required", "unique:screen_configs,screen_name"],
+            "sections" => ["required", "array"],
+            "sections.*.name" => ["required"],
+            "sections.*.type" => ["required"],
+            "sections.*.attributes" => ["nullable", "json"],
         ];
     }
 }

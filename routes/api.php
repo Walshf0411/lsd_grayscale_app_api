@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix("screenConfigs")->group(function() {
     Route::post("/", [App\Http\Controllers\ScreenConfig\GetScreenConfigsController::class, "router"]);
+
+    Route::post("/create", [App\Http\Controllers\ScreenConfig\CreateScreenConfigsController::class, "router"]);
 });
 
 Route::prefix("auth")->group(function() {
