@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Login;
 
+use App\Actions\Auth\Login\GenerateAppTokenAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Login\EmailPasswordLoginRequest;
 use App\Models\Repositories\UserRepository;
@@ -13,9 +14,12 @@ use LSD\Model\Builder\RepositoryBuilder;
 class EmailPasswordLoginController extends Controller
 {
     private RepositoryBuilder $repositoryBuilder;
-    public function __construct(RepositoryBuilder $repositoryBuilder)
+
+    private GenerateAppTokenAction $generateAppTokenAction;
+    public function __construct(RepositoryBuilder $repositoryBuilder, GenerateAppTokenAction $generateAppTokenAction)
     {
         $this->repositoryBuilder = $repositoryBuilder;
+        $this->generateAppTokenAction = $generateAppTokenAction;
     }
 
     public function router(EmailPasswordLoginRequest $request) {
@@ -35,19 +39,17 @@ class EmailPasswordLoginController extends Controller
 
         try {
             if(Auth::attempt(["email" => $request->email, "password" => $request->password])) {
-                $user = $this->repositoryBuilder->setRepo(UserRepository::class)
-                    ->addWhere([
-                        ["email", $request->email]
-                    ])
-                    ->fetch()
-                    ->selectOne();
-                $token = $user->createToken('AppToken')->plainTextToken;
-
                 $methodResponse->setStatus(true)
                     ->setMessage("User logged in successfully!")
                     ->setData([
-                        "token" => $token
-                    ])->setCode("200");
+                        "token" => $this->generateAppTokenAction->execute($request->email)
+                    ])
+                    ->setCode("200");
+            } else {
+                $methodResponse->setStatus(false)
+                    ->setMessage("Invalid credentials!")
+                    ->setData([])
+                    ->setCode("400");
             }
         } catch (Exception $e) {
             $methodResponse->setStatus(false)

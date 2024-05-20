@@ -29,6 +29,8 @@ Route::prefix("auth")->group(function() {
 
     Route::prefix("/login")->group(function () {
         Route::post("/emailPassword", [App\Http\Controllers\Auth\Login\EmailPasswordLoginController::class, "router"]);
+        Route::post("/otp", [App\Http\Controllers\Auth\Login\OtpLoginController::class, "router"]);
+        Route::post("/otp/verify", [App\Http\Controllers\Auth\Login\VerifyOtpController::class, "router"]);
     });
 
     Route::prefix("/signup")->group(function() {
