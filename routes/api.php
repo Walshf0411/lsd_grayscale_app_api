@@ -42,4 +42,6 @@ Route::prefix("auth")->group(function() {
 
 Route::middleware("auth:sanctum")->prefix("users/details")->group(function() {
     Route::get("/", [App\Http\Controllers\UserDetails\GetUserDetailsController::class, "router"]);
+
+    Route::post("/update", [App\Http\Controllers\UserDetails\UpdateUserDetailsController::class, "router"]);
 });
