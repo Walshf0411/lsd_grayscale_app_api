@@ -40,3 +40,6 @@ Route::prefix("auth")->group(function() {
     Route::middleware('auth:sanctum')->post("/logout", [App\Http\Requests\Auth\LogoutController::class, "router"]);
 });
 
+Route::middleware("auth:sanctum")->prefix("users/details")->group(function() {
+    Route::get("/", [App\Http\Controllers\UserDetails\GetUserDetailsController::class, "router"]);
+});
